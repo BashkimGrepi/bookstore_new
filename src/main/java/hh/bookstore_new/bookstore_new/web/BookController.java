@@ -14,7 +14,7 @@ import hh.bookstore_new.bookstore_new.repository.BookRepository;
 @Controller
 class BookController {
 
-    //http://localhost:8080/booklist
+    //http://localhost:8080user /booklist
     private final BookRepository bookRepository;
 
     public BookController(BookRepository bookRepository) {
@@ -34,8 +34,8 @@ class BookController {
     }
 
     @PostMapping("/addbook")
-    public String addBook(Model model) {
-        model.addAttribute("book", new Book());
+    public String addBook(Book book) {
+        bookRepository.save(book);
         return "redirect:/booklist";
     }
 
@@ -45,5 +45,5 @@ class BookController {
         return "redirect:/booklist";
     }
 
- 
+  
 }
