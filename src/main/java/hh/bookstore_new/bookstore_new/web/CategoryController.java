@@ -4,6 +4,7 @@ package hh.bookstore_new.bookstore_new.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.bookstore_new.bookstore_new.domain.Category;
 import hh.bookstore_new.bookstore_new.repository.CategoryRepository;
@@ -28,6 +29,10 @@ public class CategoryController {
         model.addAttribute("category", new Category());
         return "addcategory";
     }
-    
+    @PostMapping("/addcategory")
+    public String addCategory(Category category) {
+        categoryRepository.save(category);
+        return "redirect:/categorylist";
+    }    
     
 }
