@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/update}" th:object="${book}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        Title: <input type="text" th:field="*{title}" /><br />
+        Author: <input type="text" th:field="*{author}" /><br />
+        Price: <input type="number" th:field="*{price}" /><br />
+        Year: <input type="number" th:field="*{publicationYear}" /><br />
+        ISBN: <input type="text" th:field="*{isbn}" /><br />
+        <button type="submit">Update</button>
+    </form>
+
+    
+</body>
+</html>

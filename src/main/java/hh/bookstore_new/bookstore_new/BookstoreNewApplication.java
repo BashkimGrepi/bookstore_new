@@ -21,15 +21,16 @@ public class BookstoreNewApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
-			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, 6453, 49.99));
-			bookRepository.save(new Book("Harry potter", "J.K.Rowling", 1996, 6453, 49.99));
-			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, 6453, 49.99));
+			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, "6453-3481", 49.99));
+			bookRepository.save(new Book("Harry potter", "J.K.Rowling", 1996, "6453-1447", 49.99));
+			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, "6453-321144", 49.99));
 
 			categoryRepository.save(new Category("Sci_fi"));
 			categoryRepository.save(new Category("Comedy"));
 			categoryRepository.save(new Category("Fantasy"));
 			categoryRepository.save(new Category("Horror"));
 		};
+
 	}
 
 }

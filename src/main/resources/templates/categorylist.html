@@ -9,7 +9,8 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <h1>Category</h1>
     <table >
-        <tr th:each="Category : " >
+        <tr th:each="category : ${category}" >
+            <td th:text="$" ></td>
 
         </tr>
     </table>

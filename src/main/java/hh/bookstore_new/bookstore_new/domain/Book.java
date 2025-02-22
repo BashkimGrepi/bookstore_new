@@ -15,10 +15,10 @@ public class Book {
     private String title;
     private String author;
     private long publicationYear;
-    private int isbn;
+    private String isbn;
     private double price;
 
-    public Book(String title, String author, long publicationYear, int isbn, double price) {
+    public Book(String title, String author, long publicationYear, String isbn, double price) {
         super();
         this.title = title;
         this.author = author;
@@ -62,11 +62,11 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
