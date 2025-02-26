@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.bookstore_new.bookstore_new.domain.Book;
 import hh.bookstore_new.bookstore_new.domain.Category;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import hh.bookstore_new.bookstore_new.repository.BookRepository;
 import hh.bookstore_new.bookstore_new.repository.CategoryRepository;
@@ -14,6 +16,7 @@ import hh.bookstore_new.bookstore_new.repository.CategoryRepository;
 @SpringBootApplication
 public class BookstoreNewApplication {
 
+	private static final Logger log = LoggerFactory.getLogger(BookstoreNewApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreNewApplication.class, args);
 	}
@@ -21,16 +24,15 @@ public class BookstoreNewApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
-			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, "6453-3481", 49.99));
-			bookRepository.save(new Book("Harry potter", "J.K.Rowling", 1996, "6453-1447", 49.99));
-			bookRepository.save(new Book("Odyssean ihmeet", "James Dean", 1996, "6453-321144", 49.99));
+			log.info("save a couple of books");
+			Category horror = categoryRepository.save(new Category("Horror"));
+			Category scifi = categoryRepository.save(new Category("Sci-Fi"));
+			Category comedy = categoryRepository.save(new Category("Comedy"));
 
-			categoryRepository.save(new Category("Sci_fi"));
-			categoryRepository.save(new Category("Comedy"));
-			categoryRepository.save(new Category("Fantasy"));
-			categoryRepository.save(new Category("Horror"));
+			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, horror));
+			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, scifi));
+			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, comedy));
 		};
-
 	}
 
 }

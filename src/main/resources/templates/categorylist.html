@@ -7,14 +7,13 @@
 </head>
 <body>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <h1>Categorys</h1>
+    <h1>Categories</h1>
     <br>
     <table >
         <tr th:each="category : ${category}" >
-           
+            
             <td th:text="${category.name}" ></td>
         </tr>
-
     </table>
     <br>
     <a class="btn btn-danger" th:href="addcategory">Create Category</a>
