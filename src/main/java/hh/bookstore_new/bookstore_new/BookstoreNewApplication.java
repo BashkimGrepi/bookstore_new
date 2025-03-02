@@ -30,8 +30,10 @@ public class BookstoreNewApplication {
 			Category comedy = categoryRepository.save(new Category("Comedy"));
 
 			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, horror));
-			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, scifi));
-			bookRepository.save(new Book("Secrets of the forest", "King James", 1993, "4812-4581", 19.99, comedy));
+			bookRepository.save(new Book("legend of august", "King James", 1993, "4812-4581", 19.99, scifi));
+			bookRepository.save(new Book("my clyp", "King James", 1993, "4812-4581", 19.99, comedy));
+			bookRepository.save(new Book("kaupan kulta", "King James", 1993, "4812-4581", 19.99, comedy));
+			bookRepository.save(new Book("minun elmää", "basy g", 3544, "2005-1355", 199.54, comedy));
 		};
 	}
 
