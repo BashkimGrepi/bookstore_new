@@ -29,6 +29,7 @@ class BookController {
     @GetMapping("/booklist")
     public String showBookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
+        
         return "booklist";
     }
 
@@ -53,7 +54,8 @@ class BookController {
 
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
-        model.addAttribute("book", bookRepository.findById(id));
+        model.addAttribute("book", bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ivalid book Id: "+ id)));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
     }
 
@@ -63,5 +65,9 @@ class BookController {
         return "redirect:/booklist";
     }
     
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
   
 }
