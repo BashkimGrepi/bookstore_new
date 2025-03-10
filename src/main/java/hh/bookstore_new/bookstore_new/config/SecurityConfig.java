@@ -1,5 +1,8 @@
 package hh.bookstore_new.bookstore_new.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +11,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -36,19 +41,26 @@ public class SecurityConfig {
     
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-        .username("user")
-        .password("user1234")
-        .roles("USER")
-        .build();
+        List<UserDetails> users = new ArrayList<UserDetails>();
 
-        
-        UserDetails admin = User.withDefaultPasswordEncoder()
-        .username("admin")
-        .password("admin1234")
-        .roles("ADMIN")
-        .build();
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-        return new InMemoryUserDetailsManager(user, admin);
+        UserDetails user1 = User
+        		.withUsername("user")
+        		.password(passwordEncoder.encode("user"))
+        		.roles("USER")
+        		.build();
+
+        users.add(user1);
+
+        UserDetails user2 = User
+        		.withUsername("admin")
+        		.password(passwordEncoder.encode("admin"))
+        		.roles("USER", "ADMIN")
+        		.build();
+
+    	users.add(user2);
+
+        return new InMemoryUserDetailsManager(users);
     }
 }

@@ -2,6 +2,7 @@ package hh.bookstore_new.bookstore_new.web;
 
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,12 +48,14 @@ class BookController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable Long id) {
         bookRepository.deleteById(id);
         return "redirect:/booklist";
     }
 
     @GetMapping("/edit/{id}")
+    
     public String editBook(@PathVariable Long id, Model model) {
         model.addAttribute("book", bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ivalid book Id: "+ id)));
         model.addAttribute("categories", categoryRepository.findAll());
